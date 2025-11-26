@@ -75,17 +75,25 @@ const transformedQuestions: TransformedQuestion[] = questions.map(
 );
 
 Alpine.store("quizz", {
-  currentQuestionIndex: 0,
-  selectedAnswer: '',
-  isSubmitted: false,
-  get currentQuestion () {
-    return transformedQuestions[this.currentQuestionIndex]
-  },
-  onSubmitQuestion () {
-    if(this.selectedAnswer) {
-        this.isSubmitted = true
+    currentQuestionIndex: 0,
+    selectedAnswer: '',
+    isSubmitted: false,
+    get currentQuestion() {
+        return transformedQuestions[this.currentQuestionIndex]
+    },
+    onSubmitQuestion() {
+        if (this.selectedAnswer) {
+            this.isSubmitted = true
+        }
+    },
+    onNext() {
+        this.currentQuestionIndex++
+        this.isSubmitted = false
+    },
+    onPrevious(){
+        this.currentQuestionIndex--
     }
-  }
+
 });
 
 Alpine.start();
